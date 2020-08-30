@@ -16,10 +16,7 @@ export default function (playerInstance, options) {
             case 'application/dash+xml': // MPEG-DASH
                 if (!playerInstance.dashScriptLoaded && (!window.dashjs || window.dashjs.isDefaultSubject)) {
                     playerInstance.dashScriptLoaded = true;
-                    import(/* webpackChunkName: "dashjs" */ 'dashjs').then((it) => {
-                        window.dashjs = it.default;
-                        playerInstance.initialiseDash();
-                    });
+                    playerInstance.initialiseDash();
                 } else {
                     playerInstance.initialiseDash();
                 }
@@ -27,10 +24,7 @@ export default function (playerInstance, options) {
             case 'application/x-mpegurl': // HLS
                 if (!playerInstance.hlsScriptLoaded && !window.Hls) {
                     playerInstance.hlsScriptLoaded = true;
-                    import(/* webpackChunkName: "hlsjs" */ 'hls.js').then((it) => {
-                        window.Hls = it.default;
-                        playerInstance.initialiseHls();
-                    });
+                    playerInstance.initialiseHls();
                 } else {
                     playerInstance.initialiseHls();
                 }
