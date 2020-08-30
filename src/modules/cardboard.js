@@ -336,13 +336,6 @@ export default function (playerInstance, options) {
             .style
             .display = 'inline-block';
 
-        if (!window.PANOLENS) {
-            import(/* webpackChunkName: "panolens" */ 'panolens').then((it) => {
-                window.PANOLENS = it;
-                playerInstance.createCardboardView();
-            });
-        } else {
-            playerInstance.createCardboardView();
-        }
+        playerInstance.createCardboardView();
     };
 }
